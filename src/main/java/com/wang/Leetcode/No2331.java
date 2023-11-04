@@ -1,5 +1,7 @@
 package com.wang.Leetcode;
 
+import com.wang.common.TreeNode;
+
 public class No2331 {
 
     public boolean evaluateTree(TreeNode root) {

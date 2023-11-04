@@ -1,4 +1,4 @@
-package com.wang.Leetcode;
+package com.wang.common;
 
 public class TreeNode {
     public int val;

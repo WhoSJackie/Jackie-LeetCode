@@ -1,6 +1,6 @@
 package com.wang.Leetcode.get_offer;
 
-import com.wang.Leetcode.TreeNode;
+import com.wang.common.TreeNode;
 
 public class Offer28 {
 

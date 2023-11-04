@@ -1,5 +1,7 @@
 package com.wang.Leetcode;
 
+import com.wang.common.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 

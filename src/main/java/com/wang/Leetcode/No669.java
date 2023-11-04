@@ -1,5 +1,7 @@
 package com.wang.Leetcode;
 
+import com.wang.common.TreeNode;
+
 public class No669 {
 
     public TreeNode trimBST(TreeNode root, int low, int high) {

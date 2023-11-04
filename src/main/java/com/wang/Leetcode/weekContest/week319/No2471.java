@@ -1,6 +1,6 @@
 package com.wang.Leetcode.weekContest.week319;
 
-import com.wang.Leetcode.TreeNode;
+import com.wang.common.TreeNode;
 
 import java.util.*;
 

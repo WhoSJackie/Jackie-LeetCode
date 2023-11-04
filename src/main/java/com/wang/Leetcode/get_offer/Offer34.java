@@ -1,7 +1,6 @@
 package com.wang.Leetcode.get_offer;
 
-import com.wang.Leetcode.TreeNode;
-import sun.reflect.generics.tree.Tree;
+import com.wang.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

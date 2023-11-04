@@ -1,5 +1,7 @@
 package com.wang.Leetcode;
 
+import com.wang.common.TreeNode;
+
 public class No700 {
     TreeNode res;
     public TreeNode searchBST(TreeNode root, int val) {

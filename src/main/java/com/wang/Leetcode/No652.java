@@ -1,9 +1,11 @@
 package com.wang.Leetcode;
 
+import com.wang.common.TreeNode;
+
 import java.util.*;
 
 public class No652 {
-    Map<String,TreeNode> map = new HashMap<>();
+    Map<String, TreeNode> map = new HashMap<>();
     Set<TreeNode> repeat = new HashSet<>();
 
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {

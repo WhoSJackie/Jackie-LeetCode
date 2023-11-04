@@ -1,6 +1,6 @@
 package com.wang.Leetcode.get_offer;
 
-import com.wang.Leetcode.TreeNode;
+import com.wang.common.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;

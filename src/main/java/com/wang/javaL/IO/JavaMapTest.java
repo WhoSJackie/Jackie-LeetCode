@@ -1,4 +1,4 @@
-package com.wang.java_Learning;
+package com.wang.javaL.IO;
 
 
 import com.linuxense.javadbf.DBFReader;
@@ -16,7 +16,6 @@ public class JavaMapTest {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入dbf文件路径:");
         String filePath = scanner.nextLine();
-        readDbf(filePath);
     }
 
     public static void readTxt(){
@@ -64,31 +63,4 @@ public class JavaMapTest {
         }
     }
 
-    public static void readDbf(String pathParam){
-        InputStream inputStream =null;
-        DBFReader reader = null;
-        try{
-            String filePath = pathParam;
-            String str = formatter.format(LocalDate.now());
-            System.out.println(str);
-            filePath = filePath.replace("YYYYMMDD",str);
-            System.out.println(filePath);
-            inputStream = new FileInputStream(filePath);
-            reader = new DBFReader(inputStream);
-            System.out.println("DBF Field count is : "+reader.getFieldCount());
-            for (int i = 0; i < reader.getFieldCount(); i++) {
-                System.out.println(reader.getField(i).getName());
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            if (inputStream!=null){
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 }

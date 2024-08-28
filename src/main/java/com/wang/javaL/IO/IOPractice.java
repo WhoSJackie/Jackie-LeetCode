@@ -1,9 +1,12 @@
 package com.wang.javaL.IO;
 
+import com.wang.javaL.IO.reportProcessor.ReportHandleProcessor;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class IOPractice {
 
@@ -45,28 +48,38 @@ public class IOPractice {
     }
 
 
-    public void  fileOutputTest(String pathname) throws IOException {
+    public void  fileOutputTest(String pathname,String value,boolean existRecreate) throws IOException {
         File file1=new File(pathname);
         boolean flag=false;
         if(!file1.exists()){
             flag=file1.createNewFile();
+        } else{
+            if (existRecreate){
+                System.out.println("文件已经存在,删除重建!");
+                boolean deleteFlag = file1.delete();
+                if (deleteFlag){
+                   boolean createFlag = file1.createNewFile();
+                   if (!createFlag){
+                       System.out.println("重建失败");
+                       return;
+                   }
+                } else{
+                    System.out.println("删除失败，请手动创建或者重试!");
+                    return;
+                }
+            } else{
+                System.out.println("文件已经存在!");
+                return;
+            }
         }
-        else{
-            System.out.println("文件已经存在");
-        }
-        System.out.println(flag);
-        FileWriter fileWriter=null;
-        if(file1.exists()){
-            fileWriter=new FileWriter(file1);
-        }
-        char[] c={'闻','君','有','两','意'};
-        try{
-            fileWriter.write(c);
-            fileWriter.flush();
+
+        try (FileWriter fileWriter=new FileWriter(file1);BufferedWriter writer = new BufferedWriter(fileWriter)){
+            writer.write(value);
+            writer.flush();
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-
+        System.out.println("写入完成!");
     }
 
 
@@ -121,7 +134,10 @@ public class IOPractice {
     }
 
     public static void main(String[] args) throws IOException {
-        new IOPractice().fileInputTest("C:\\Users\\jiami\\Desktop\\场外债券使用的表.txt");
+        FileUtils utils = new ExcelUtils();
+        // new IOPractice().fileInputTest("C:\\Users\\jiami\\Desktop\\场外债券使用的表.txt");
+        List<String> list = utils.execute("D:\\work\\报送口径文档\\报送口径文档\\east5\\信托业监管数据标准化规范(2024)\\规范附件1：金融监管总局信托业监管数据标准化规范一览表.xlsx",4, ReportHandleProcessor.CREATE_TB);
+        new IOPractice().fileOutputTest("C:\\Users\\jiami\\Desktop\\写入测试.txt",list.get(0),true);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.wang.Leetcode;
 
-public class No50 {
+public class No050 {
 
     public double myPow(double x, int n) {
         if (Math.abs(x)!=1&&n==Integer.MIN_VALUE) return 0;

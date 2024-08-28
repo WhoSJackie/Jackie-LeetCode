@@ -1,8 +1,11 @@
 package com.wang.java_Learning.sort;
 
-public class SortCollections {
+public class SortCollections implements SortParent{
 
+    @Override
+    public void sort(int[] nums) {
 
+    }
 
     public static void main(String[] args) {
         int[] nums = new int[]{2,4,3,1,5,7};
@@ -13,6 +16,7 @@ public class SortCollections {
             System.out.println(num);
         }
     }
+
 
 
 }

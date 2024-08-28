@@ -1,6 +1,6 @@
 package com.wang.Leetcode;
 
-public class No38 {
+public class No038 {
     public String countAndSay(int n) {
         if(n==1){
             return "1";
@@ -37,6 +37,6 @@ public class No38 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new No38().countAndSay(4));
+        System.out.println(new No038().countAndSay(4));
     }
 }

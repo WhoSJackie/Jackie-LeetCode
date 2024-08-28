@@ -3,15 +3,23 @@ package com.wang.java_Learning.exception;
 public class TryCatch {
 
     public int testException() {
-        int i = 0;
         try {
-            i++;
-            throw new Exception("error");
+            for (int j = 0; j < 10000; j++) {
+//                if (j==2) {
+//                    System.out.println("跳出!");
+//                    return j;
+//                }
+//                if (j==6)  throw new Exception("error");
+                Thread.sleep(500);
+                System.out.println(j);
+            }
         } catch (Exception e) {
-            return i++;
+            System.out.println("error");
+            e.printStackTrace();
         } finally {
-            i++;
+            System.out.println("finally");
         }
+        return -1;
     }
 
     public static void main(String[] args) {

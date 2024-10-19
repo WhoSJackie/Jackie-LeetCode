@@ -1,5 +1,6 @@
 package com.wang.javaL.IO.reportProcessor;
 
+import com.wang.javaL.IO.reportProcessor.pojo.CreateTbPojo;
 import com.wang.javaL.util.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -8,13 +9,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class CreateRpTableProcessor implements ReportHandleProcessor{
 
 
 
     @Override
-    public void doProcess(Sheet sheet, List<String> strs) {
+    public  void doProcess(Sheet sheet, Map<String,Object> res) {
         Iterator<Row> rowIterator = sheet.rowIterator();
         int rix=0;
         String tbName = "";
@@ -39,7 +41,7 @@ public class CreateRpTableProcessor implements ReportHandleProcessor{
                         continue;
                     }
                 }
-                // 如果第四列有值，第五列没值，则是表的划分
+                // 如果第五列有值，第六列没值，则是表的划分
                 if (index==4){
                     if (!StringUtils.isEmpty(v)) {
                         String no = v;
@@ -96,8 +98,9 @@ public class CreateRpTableProcessor implements ReportHandleProcessor{
                     sb.append(",").append(s);
                 }
                 sb.append(");\n");
-                strs.add(String.valueOf(sb));
-                tbEnd=false;
+                CreateTbPojo tb = new CreateTbPojo(sb.toString());
+                res.put(tbName,tb);
+                tbEnd = false;
                 sb.setLength(0);
                 // 清空主键列表
                 pkList.clear();
@@ -125,11 +128,12 @@ public class CreateRpTableProcessor implements ReportHandleProcessor{
             String[] sp = val.split("\\.\\.");
             if (sp.length!=2) throw new RuntimeException("变长数字类型转换失败!");
             sb.append("NUMBER(").append(sp[1]).append(")");
-        } else if ("YYYY-MM".equalsIgnoreCase(val.substring(0,7))){
+        } else if ("YYYYMM".equalsIgnoreCase(val.substring(0,6))){
             sb.append("VARCHAR2(").append(val.length()).append(")");
         } else{
             sb.append("ERROR");
         }
         return sb.toString();
     }
+
 }

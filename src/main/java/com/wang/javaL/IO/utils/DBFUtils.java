@@ -1,20 +1,19 @@
-package com.wang.javaL.IO;
+package com.wang.javaL.IO.utils;
 
 import com.linuxense.javadbf.DBFField;
 import com.linuxense.javadbf.DBFReader;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DBFUtils extends FileUtils {
 
 
     @Override
-    List<String> execute(String filePath, int... a) {
-        List<String> res = new ArrayList<>();
+    Map<String,Object> execute(String filePath, int... a) {
+        Map<String,Object> res = new HashMap<>();
         DBFReader reader = null;
         try (InputStream stream = new FileInputStream(filePath)){
             reader = new DBFReader(stream);

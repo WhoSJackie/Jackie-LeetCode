@@ -134,10 +134,7 @@ public class IOPractice {
     }
 
     public static void main(String[] args) throws IOException {
-        FileUtils utils = new ExcelUtils();
         // new IOPractice().fileInputTest("C:\\Users\\jiami\\Desktop\\场外债券使用的表.txt");
-        List<String> list = utils.execute("D:\\work\\报送口径文档\\报送口径文档\\east5\\信托业监管数据标准化规范(2024)\\规范附件1：金融监管总局信托业监管数据标准化规范一览表.xlsx",4, ReportHandleProcessor.CREATE_TB);
-        new IOPractice().fileOutputTest("C:\\Users\\jiami\\Desktop\\写入测试.txt",list.get(0),true);
     }
 
 }

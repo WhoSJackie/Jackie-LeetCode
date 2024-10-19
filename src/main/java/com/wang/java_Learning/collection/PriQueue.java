@@ -19,6 +19,7 @@ public class PriQueue {
         for (String s : strList) {
             System.out.println(s);
         }
+
     }
 
 

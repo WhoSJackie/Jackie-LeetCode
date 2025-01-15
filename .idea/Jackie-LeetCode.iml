@@ -35,12 +35,12 @@
     <orderEntry type="library" name="Maven: ognl:ognl:3.2.10" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.24.1-GA" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
-    <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.5.4" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.30" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.19.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.0" level="project" />
+    <orderEntry type="library" name="Maven: cn.hutool:hutool-all:5.4.1" level="project" />
+    <orderEntry type="library" name="Maven: com.huawei.gauss:gauss-gsjdbc:4.0" level="project" />
   </component>
 </module>

@@ -1,0 +1,172 @@
+![lc189.png](https://pic.leetcode.cn/1716207476-TyuIlk-lc189.png)
+
+注意本题没有保证 $k$ 小于数组长度 $n$。由于轮转 $n$ 次等于没有轮转，轮转 $n+1$ 等于轮转 $1$ 次，依此类推，轮转 $k$ 次等于轮转 $k\bmod n$ 次。
+
+> 注：为简单起见，代码没有写 $k=0$ 的特判。
+
+* [sol-Python3]
+
+```py
+# 注：请勿使用切片，会产生额外空间
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        def reverse(i: int, j: int) -> None:
+            while i < j:
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
+                j -= 1
+
+        n = len(nums)
+        k %= n  # 轮转 k 次等于轮转 k%n 次
+        reverse(0, n - 1)
+        reverse(0, k - 1)
+        reverse(k, n - 1)
+```
+
+* [sol-Java]
+
+```java
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k %= n; // 轮转 k 次等于轮转 k%n 次
+        reverse(nums, 0, n - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, n - 1);
+    }
+
+    private void reverse(int[] nums, int i, int j) {
+        while (i < j) {
+            int temp = nums[i];
+            nums[i++] = nums[j];
+            nums[j--] = temp;
+        }
+    }
+}
+```
+
+* [sol-C++]
+
+```cpp
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        k %= nums.size(); // 轮转 k 次等于轮转 k%n 次
+        ranges::reverse(nums);
+        reverse(nums.begin(), nums.begin() + k);
+        reverse(nums.begin() + k, nums.end());
+    }
+};
+```
+
+* [sol-C++手写reverse]
+
+```cpp
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        auto reverse = [&](int i, int j) {
+            while (i < j) {
+                swap(nums[i++], nums[j--]);
+            }
+        };
+
+        int n = nums.size();
+        k %= n; // 轮转 k 次等于轮转 k%n 次
+        reverse(0, n - 1);
+        reverse(0, k - 1);
+        reverse(k, n - 1);
+    }
+};
+```
+
+* [sol-C]
+
+```c
+void rotate(int* nums, int numsSize, int k) {
+    k %= numsSize; // 轮转 k 次等于轮转 k%n 次
+    reverse(nums, 0, numsSize - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, numsSize - 1);
+}
+
+void reverse(int* nums, int i, int j) {
+    while (i < j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+        i++;
+        j--;
+    }
+}
+```
+
+* [sol-Go]
+
+```go
+func rotate(nums []int, k int) {
+    k %= len(nums) // 轮转 k 次等于轮转 k%n 次
+    slices.Reverse(nums)
+    slices.Reverse(nums[:k])
+    slices.Reverse(nums[k:])
+}
+```
+
+* [sol-JS]
+
+```js
+var rotate = function(nums, k) {
+    function reverse(i, j) {
+        while (i < j) {
+            [nums[i], nums[j]] = [nums[j], nums[i]];
+            i++;
+            j--;
+        }
+    }
+
+    const n = nums.length;
+    k %= n; // 轮转 k 次等于轮转 k%n 次
+    reverse(0, n - 1);
+    reverse(0, k - 1);
+    reverse(k, n - 1);
+};
+```
+
+* [sol-Rust]
+
+```rust
+impl Solution {
+    pub fn rotate(nums: &mut Vec<i32>, k: i32) {
+        let k = k as usize % nums.len(); // 轮转 k 次等于轮转 k%n 次
+        nums.reverse();
+        nums[..k].reverse();
+        nums[k..].reverse();
+    }
+}
+```
+
+#### 复杂度分析
+
+- 时间复杂度：$\mathcal{O}(n)$，其中 $n$ 是 $\textit{nums}$ 的长度。
+- 空间复杂度：$\mathcal{O}(1)$。
+
+## 分类题单
+
+[如何科学刷题？](https://leetcode.cn/circle/discuss/RvFUtj/)
+
+1. [滑动窗口与双指针（定长/不定长/单序列/双序列/三指针/分组循环）](https://leetcode.cn/circle/discuss/0viNMK/)
+2. [二分算法（二分答案/最小化最大值/最大化最小值/第K小）](https://leetcode.cn/circle/discuss/SqopEo/)
+3. [单调栈（基础/矩形面积/贡献法/最小字典序）](https://leetcode.cn/circle/discuss/9oZFK9/)
+4. [网格图（DFS/BFS/综合应用）](https://leetcode.cn/circle/discuss/YiXPXW/)
+5. [位运算（基础/性质/拆位/试填/恒等式/思维）](https://leetcode.cn/circle/discuss/dHn9Vk/)
+6. [图论算法（DFS/BFS/拓扑排序/最短路/最小生成树/二分图/基环树/欧拉路径）](https://leetcode.cn/circle/discuss/01LUak/)
+7. [动态规划（入门/背包/状态机/划分/区间/状压/数位/数据结构优化/树形/博弈/概率期望）](https://leetcode.cn/circle/discuss/tXLS3i/)
+8. [常用数据结构（前缀和/差分/栈/队列/堆/字典树/并查集/树状数组/线段树）](https://leetcode.cn/circle/discuss/mOr1u6/)
+9. [数学算法（数论/组合/概率期望/博弈/计算几何/随机算法）](https://leetcode.cn/circle/discuss/IYT3ss/)
+10. [贪心与思维（基本贪心策略/反悔/区间/字典序/数学/思维/脑筋急转弯/构造）](https://leetcode.cn/circle/discuss/g6KTKL/)
+11. [链表、二叉树与回溯（前后指针/快慢指针/DFS/BFS/直径/LCA/一般树）](https://leetcode.cn/circle/discuss/K0n2gO/)
+12. [字符串（KMP/Z函数/Manacher/字符串哈希/AC自动机/后缀数组/子序列自动机）](https://leetcode.cn/circle/discuss/SJFwQI/)
+
+[我的题解精选（已分类）](https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md)
+
+欢迎关注 [B站@灵茶山艾府](https://space.bilibili.com/206214)

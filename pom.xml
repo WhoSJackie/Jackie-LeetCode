@@ -54,11 +54,11 @@
             <version>1.18.12</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.5.4</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.postgresql</groupId>-->
+<!--            <artifactId>postgresql</artifactId>-->
+<!--            <version>42.5.4</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>mysql</groupId>
@@ -84,6 +84,26 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.11.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.4.1</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.huaweicloud.gaussdb</groupId>-->
+<!--            <artifactId>opengaussjdbc</artifactId>-->
+<!--            <version>503.2.T35</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.opengauss/opengauss-jdbc -->
+        <dependency>
+            <groupId>com.huawei.gauss</groupId>
+            <artifactId>gauss-gsjdbc</artifactId>
+            <version>4.0</version>
+        </dependency>
+
 
 
     </dependencies>

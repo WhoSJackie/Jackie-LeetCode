@@ -1,9 +1,33 @@
 package com.wang.java_Learning.collection;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class PriQueue {
+
+    public static String selectColor(String[] colorArr,int[] weightArr){
+        int length = colorArr.length;
+        int totalWeight = 0;
+        boolean sameWeight = true;
+        for (int i = 0; i < length; i++) {
+            totalWeight+=weightArr[i];
+            if (sameWeight && totalWeight!=weightArr[i]*(i+1)){
+                sameWeight = false;
+            }
+        }
+
+        if (!sameWeight && totalWeight>0){
+            int offset = ThreadLocalRandom.current().nextInt();
+            System.out.println(offset);
+            for (int i = 0; i < length; i++) {
+                if (offset<weightArr[i]){
+                    return colorArr[i];
+                }
+            }
+        }
+        return colorArr[ThreadLocalRandom.current().nextInt(length)];
+    }
 
     public static void main(String[] args) {
 //        PriorityQueue<Integer> queue = new PriorityQueue<Integer>((a,b)-> Integer.compare(0, a-b));
@@ -19,8 +43,9 @@ public class PriQueue {
         for (String s : strList) {
             System.out.println(s);
         }
-
     }
+
+
 
 
 }

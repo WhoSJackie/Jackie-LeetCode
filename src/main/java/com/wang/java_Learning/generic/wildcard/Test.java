@@ -1,4 +1,4 @@
-package com.wang.java_Learning.Genraic;
+package com.wang.java_Learning.generic.wildcard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +7,12 @@ public class Test {
 
     public static void main(String[] args) {
         List<People> a=new ArrayList<>();
-        a.add(new People("jackie",1));
+        a.add(new People("tom",1));
 
         List<Man> b=new ArrayList<>();
         b.add(new Man("maggie",20));
 
-//        Test.processElments2(a);
+        Test.processElments2(a);
         Test.processElmetns(a);
         Test.processElments1(b);
 
@@ -21,7 +21,7 @@ public class Test {
 
     public static void processElmetns(List<?> a){
         for (Object o : a) {
-            System.out.println(a);
+            System.out.println(o);
         }
 
     }

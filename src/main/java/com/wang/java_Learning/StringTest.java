@@ -32,7 +32,9 @@ public class StringTest {
     public static void main(String[] args) {
 //        splitSoh("zxd022\u00011\u00012\u00012;3\u0001测试022\u0001tyxy022\u00011;0\u00010\u00010\n" +
 //                "zxd0221\u00011\u00012\u00012;3;1\u0001测试022\u0001tyxy022\u00011;0\u00010\u00010\n");
-        dictValueSqlScript(83051,"其中：本期新发生风险项目，2014年以来累计新发生风险项目，本期化解的风险项目，2014年以来累计化解的风险项目","风险要素表类别",1);
+//        dictValueSqlScript(83051,"其中：本期新发生风险项目，2014年以来累计新发生风险项目，本期化解的风险项目，2014年以来累计化解的风险项目","风险要素表类别",1);
+        char s = 'a';
+        System.out.println(s>='A'&&s<='Z');
     }
 
 

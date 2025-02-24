@@ -1,4 +1,4 @@
-package com.wang.java_Learning.generic;
+package com.wang.java_Learning.generic.basic;
 
 public  interface TestGenericInterface<T> {
 

@@ -1,5 +1,7 @@
 package com.wang.learning;
 
+import com.wang.common.TreeNode;
+
 public class No437 {
     int sum=0;
     public int pathSum(TreeNode root, int targetSum) {
@@ -38,17 +40,4 @@ public class No437 {
 
 }
 
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-     }
- }
 

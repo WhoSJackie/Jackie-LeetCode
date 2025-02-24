@@ -1,5 +1,7 @@
 package com.wang.learning;
 
+import com.wang.common.TreeNode;
+
 public class No687 {
 
     int max;

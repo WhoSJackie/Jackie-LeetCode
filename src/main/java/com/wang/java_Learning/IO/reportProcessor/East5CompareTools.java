@@ -1,9 +1,7 @@
-package com.wang.java_Learning.IO;
+package com.wang.java_Learning.IO.reportProcessor;
 
-import com.wang.java_Learning.IO.reportProcessor.ReportHandleProcessor;
 import com.wang.java_Learning.IO.pojo.TbFieldPojo;
 import com.wang.java_Learning.IO.pojo.TbFieldsPojo;
-import com.wang.java_Learning.IO.utils.ExcelUtils;
 
 import java.util.*;
 
@@ -23,8 +21,8 @@ public class East5CompareTools {
         params2.put("sheetIx",sheetIx2);
         params2.put("type",ReportHandleProcessor.TB_FIELDS);
         Object obj = new Object();
-        Map<String, Object> file1 = new ExcelUtils().execute(obj,params1);
-        Map<String, Object> file2 = new ExcelUtils().execute(obj,params2);
+        Map<String, Object> file1 = new ReportDefaultExcelUtils().execute(obj,params1);
+        Map<String, Object> file2 = new ReportDefaultExcelUtils().execute(obj,params2);
         if (file1.size()!=file2.size()) {
             System.out.println("两版本表数量不一致");
             return res;

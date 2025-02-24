@@ -1,4 +1,4 @@
-package com.wang.java_Learning.Genraic;
+package com.wang.java_Learning.generic.wildcard;
 
 public class Women extends People{
 

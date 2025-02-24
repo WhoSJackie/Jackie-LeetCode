@@ -1,5 +1,7 @@
 package com.wang.learning;
 
+import com.wang.common.ListNode;
+
 public class No237 {
     public void deleteNode(ListNode node) {
         ListNode temp=node.next;
@@ -8,10 +10,4 @@ public class No237 {
     }
 }
 
-
- class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) { val = x; }
-}
 

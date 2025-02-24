@@ -1,4 +1,4 @@
-package com.wang.java_Learning.Genraic.generInterface;
+package com.wang.java_Learning.generic.genericInterface;
 
 public interface TigerGarden<T,S> extends AnimalGarden<T>{
 

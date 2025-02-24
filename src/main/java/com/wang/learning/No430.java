@@ -1,5 +1,7 @@
 package com.wang.learning;
 
+import com.wang.common.Node;
+
 public class No430 {
     //法一
     public Node flatten(Node head) {
@@ -110,18 +112,3 @@ public class No430 {
 
 }
 
-
-
-class Node {
-    public int val;
-    public Node prev;
-    public Node next;
-    public Node child;
-
-    Node(int val,Node prev,Node next,Node child){
-        this.val=val;
-        this.prev=prev;
-        this.next=next;
-        this.child=child;
-    }
-}

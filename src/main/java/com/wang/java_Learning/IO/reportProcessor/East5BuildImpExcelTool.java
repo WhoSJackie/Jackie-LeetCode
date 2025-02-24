@@ -1,9 +1,7 @@
-package com.wang.java_Learning.IO;
+package com.wang.java_Learning.IO.reportProcessor;
 
-import com.wang.java_Learning.IO.reportProcessor.ReportHandleProcessor;
 import com.wang.java_Learning.IO.pojo.TbFieldPojo;
 import com.wang.java_Learning.IO.pojo.TbFieldsPojo;
-import com.wang.java_Learning.IO.utils.ExcelUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -93,7 +91,7 @@ public class East5BuildImpExcelTool {
         params.put("bigXlsxFlag",bigXlsxMode);
         params.put("type",ReportHandleProcessor.TB_FIELDS);
         Object obj = new Object();
-        Map<String, Object> file1 = new ExcelUtils().execute(obj,params);
+        Map<String, Object> file1 = new ReportDefaultExcelUtils().execute(obj,params);
         // 排序
         Map<String,Object> map = new TreeMap();
         map.putAll(file1);

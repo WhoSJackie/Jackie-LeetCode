@@ -98,13 +98,17 @@
 <!--            <scope>provided</scope>-->
 <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.opengauss/opengauss-jdbc -->
+<!--        <dependency>-->
+<!--            <groupId>com.huawei.gauss</groupId>-->
+<!--            <artifactId>gauss-gsjdbc</artifactId>-->
+<!--            <version>4.0</version>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>com.huawei.gauss</groupId>
-            <artifactId>gauss-gsjdbc</artifactId>
-            <version>4.0</version>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.3</version>
         </dependency>
-
-
 
     </dependencies>
 

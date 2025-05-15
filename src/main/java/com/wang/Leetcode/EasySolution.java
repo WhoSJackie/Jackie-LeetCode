@@ -1,109 +1,72 @@
 package com.wang.Leetcode;
 
 
+import java.io.File;
 import java.util.*;
 
 public class EasySolution {
 
-    public String convertToTitle(int columnNumber) {
-        StringBuilder sb  =new StringBuilder();
-        while (columnNumber!=0){
-            columnNumber--;
-            sb.append((char)('A'+columnNumber%26));
-            columnNumber = columnNumber/26;
-        }
-        return sb.reverse().toString();
+    private int i;
+
+    public int inc(int m){
+        return m+i;
     }
 
-    public int findMaxConsecutiveOnes(int[] nums) {
-        int cnt=0;
-        int max = 0;
-        int len  = nums.length;
-        for (int i = 0; i < len; i++) {
-            if (nums[i]!=1){
-                max = Math.max(max,cnt);
-                cnt=0;
-            } else{
-                cnt++;
-            }
+    public int tryCatch(){
+        int i;
+        try{
+            i = 1;
+            return i;
+        } catch(Exception e){
+            i = 2;
+            return i;
+        } finally{
+            i = 3;
         }
-        max = Math.max(max,cnt);
-        return max;
     }
 
-    public int thirdMax(int[] nums) {
-        int len = nums.length;
-        // 小于3个
-        if (len<3){
-            if (len==1) return nums[0];
-            return Math.max(nums[0],nums[1]);
+    public List<String> getLongestSubsequence(String[] words, int[] groups) {
+        if (words.length==1) return Arrays.asList(words);
+        List<String> list = new ArrayList<>();
+        int i=0;
+        int len = words.length;
+        list.add(words[i++]);
+        while (i<len){
+            if (groups[i]!=groups[i-1]) list.add(words[i]);
+            i++;
         }
-        // 大于等于三个
-        Arrays.sort(nums);
-        int cnt=1;
-        for (int i = len-2; i >=0; i--) {
-            if (nums[i]<nums[i+1]) cnt++;
-            if (cnt==3) return nums[i];
-        }
-        if (cnt<3) return nums[len-1];
-        return cnt;
+        return list;
     }
 
-    public int maximumProduct(int[] nums) {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> resSet = new HashSet<>();
         int len = nums.length;
         Arrays.sort(nums);
-        return Math.max(nums[len-1]*nums[len-2]*nums[len-3],nums[len-1]*nums[0]*nums[1]);
-    }
-
-
-    public int findShortestSubArray(int[] nums) {
-        int len = nums.length;
-        Map<Integer,int[]> dataMap = new HashMap<>();
-        int maxDeg = 0;
-        int minRange = 0;
-        // 1.1 统计最大的度,统计每个数的度
+        int l = 0,r = 0;
         for (int i = 0; i < len; i++) {
-            int[] curArr = dataMap.getOrDefault(nums[i],new int[]{0,i,i});
-            // 处理度
-            curArr[0]++;
-            // 处理范围
-            curArr[2] = i;
-            dataMap.put(nums[i],curArr);
-        }
-        // 1.3 找到最大度的最小连续子串长度
-        for (Map.Entry<Integer, int[]> entry : dataMap.entrySet()) {
-            int[] tmpArr = entry.getValue();
-            // 符合最大度
-            if (maxDeg<tmpArr[0]){
-                maxDeg = tmpArr[0];
-                minRange = tmpArr[2]-tmpArr[1]+1;
-            }else if (tmpArr[0]==maxDeg){
-                if (tmpArr[2]-tmpArr[1]+1<minRange){
-                    minRange = tmpArr[2]-tmpArr[1]+1;
+            l = i+1;
+            r = len-1;
+            while (l<r){
+                int temp = nums[i]+nums[l]+nums[r];
+                if (temp>0)r--;
+                else if (temp<0) l++;
+                else {
+                    resSet.add(Arrays.asList(nums[i],nums[l],nums[r]));
+                    l++;
+                    r--;
                 }
             }
         }
-        return minRange;
+        return new ArrayList<>(resSet);
     }
-
-
-    public List<Integer> findDisappearedNumbers(int[] nums) {
-        int n = nums.length;
-        int[] norNums = new int[n+1];
-        List<Integer> res = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            norNums[nums[i]]++;
-        }
-        // 找到确实的数字
-        for (int i = 1; i <= n; i++) {
-            if (norNums[i]==0) res.add(i);
-        }
-        return res;
-    }
-
 
     public static void main(String[] args) {
-        System.out.println(new EasySolution().findDisappearedNumbers(new int[]{1,1}));
+        java.io.File  fileDir = new java.io.File("D:\\home\\wjblog\\");
+        java.io.File[] files = fileDir.listFiles();
+        for (File file : files) {
+            System.out.println(file.getName());
+        }
     }
+
 
 }

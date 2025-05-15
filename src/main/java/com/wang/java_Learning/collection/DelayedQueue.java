@@ -17,9 +17,11 @@ public class DelayedQueue {
         queue.add(new DelayElement("z",3000L));
         while (!queue.isEmpty()){
             // 只取到延迟时间的元素
-            System.out.println(queue.take()+"-->"+new Date());
+            DelayElement delayElement = (DelayElement)queue.take();
+            delayElement.accessOuter();
+            System.out.println(delayElement.getName()+"-->"+new Date());
             // 未到延迟时间会返回null
-            System.out.println(queue.poll()+"-->"+new Date());
+//            System.out.println(queue.poll()+"-->"+new Date());
         }
     }
 

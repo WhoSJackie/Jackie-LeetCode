@@ -1,7 +1,7 @@
 package com.wang.java_Learning.equalTest;
 
 
-import com.wang.java_Learning.util.StringUtils;
+import com.wang.java_Learning.utils.StringUtils;
 
 import java.util.HashSet;
 

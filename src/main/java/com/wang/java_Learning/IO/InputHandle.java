@@ -1,6 +1,6 @@
 package com.wang.java_Learning.IO;
 
-import com.wang.java_Learning.util.StringUtils;
+import com.wang.java_Learning.utils.StringUtils;
 
 import java.io.*;
 import java.util.*;

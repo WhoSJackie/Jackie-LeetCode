@@ -60,6 +60,41 @@ public class EasySolution {
         return new ArrayList<>(resSet);
     }
 
+    public List<String> getWordsInLongestSubsequence(String[] words, int[] groups) {
+        int len = words.length;
+        int[] dp = new int[len];
+        int[] pre = new int[len];
+        int maxIndex=0;
+        Arrays.fill(dp,1);
+        Arrays.fill(pre,-1);
+        for (int i = 1; i < len; i++) {
+            for (int j=0;j<i;j++){
+                if (isValid(words[i],words[j]) && dp[i]<dp[j]+1 && groups[i]!=groups[j]){
+                    dp[i] = dp[j]+1;
+                    pre[i] = j;
+                }
+            }
+            if (dp[maxIndex]<dp[i]) maxIndex = i;
+        }
+        String[] strs = new String[dp[maxIndex]];
+        int index= dp[maxIndex]-1;
+        for (int x = maxIndex; x >=0; ) {
+            strs[index--] = words[x];
+            x = pre[x];
+        }
+        return Arrays.asList(strs);
+    }
+
+    private boolean isValid(String word1,String word2){
+        if (word1.length()!=word2.length()) return false;
+        int cnt=0;
+        for (int i = 0; i < word1.length(); i++) {
+            if (word1.charAt(i)!=word2.charAt(i)) cnt++;
+            if (cnt>1) return false;
+        }
+        return cnt==1;
+    }
+
     public static void main(String[] args) {
         java.io.File  fileDir = new java.io.File("D:\\home\\wjblog\\");
         java.io.File[] files = fileDir.listFiles();

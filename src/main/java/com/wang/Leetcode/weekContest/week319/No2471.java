@@ -20,7 +20,7 @@ public class No2471 {
 
             while (count>0){
                 TreeNode temp = queue.poll();
-                arr.add(temp.val);
+                arr.add((int)temp.val);
                 if (temp.left!=null){
                     queue.offer(temp.left);
                 }

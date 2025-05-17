@@ -42,7 +42,7 @@ public class CBTInserter {
         }
         // 在队尾插入子节点
         candidate.offer(child);
-        return candi.val;
+        return (int)candi.val;
     }
 
     public TreeNode get_root() {

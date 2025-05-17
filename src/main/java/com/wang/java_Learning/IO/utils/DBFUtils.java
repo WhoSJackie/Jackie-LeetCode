@@ -3,7 +3,7 @@ package com.wang.java_Learning.IO.utils;
 import com.linuxense.javadbf.DBFField;
 import com.linuxense.javadbf.DBFReader;
 import com.wang.java_Learning.IO.pojo.*;
-import com.wang.java_Learning.util.FieldUtils;
+import com.wang.java_Learning.utils.FieldUtils;
 
 import java.io.*;
 import java.lang.reflect.Field;

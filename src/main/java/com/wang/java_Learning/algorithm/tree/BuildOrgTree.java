@@ -4,7 +4,7 @@ package com.wang.java_Learning.algorithm.tree;
 import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.ObjectUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.wang.java_Learning.util.JsonUtil;
+import com.wang.java_Learning.utils.JsonUtil;
 import com.wang.java_Learning.sql.JdbcUtil;
 
 import java.sql.Connection;

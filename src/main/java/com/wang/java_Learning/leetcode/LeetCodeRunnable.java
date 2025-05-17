@@ -2,8 +2,8 @@ package com.wang.java_Learning.leetcode;
 
 import com.wang.common.resp.LeetCodeFutureRes;
 import com.wang.common.resp.LeetCodeResp;
-import com.wang.java_Learning.util.JsonUtil;
-import com.wang.java_Learning.util.LeetCodeUtil;
+import com.wang.java_Learning.utils.JsonUtil;
+import com.wang.java_Learning.utils.LeetCodeUtil;
 import okhttp3.Call;
 import okhttp3.Response;
 

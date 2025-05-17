@@ -1,13 +1,10 @@
 package com.wang.java_Learning.script;
 
-import com.sun.deploy.Environment;
-import com.wang.java_Learning.util.StringUtils;
+import com.wang.java_Learning.utils.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class LittleScript {

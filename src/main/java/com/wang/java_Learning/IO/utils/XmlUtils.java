@@ -2,8 +2,8 @@ package com.wang.java_Learning.IO.utils;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.wang.java_Learning.IO.pojo.EtfPcfPojo;
-import com.wang.java_Learning.util.FieldUtils;
-import com.wang.java_Learning.util.StringUtils;
+import com.wang.java_Learning.utils.FieldUtils;
+import com.wang.java_Learning.utils.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

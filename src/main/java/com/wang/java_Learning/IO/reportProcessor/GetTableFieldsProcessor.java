@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class GetTableFieldsProcessor implements ReportHandleProcessor{
+public class GetTableFieldsProcessor implements HandleProcessor {
     @Override
     public void doProcess(Sheet sheet, Map<String,Object> res) {
         Iterator<Row> rowIterator = sheet.rowIterator();

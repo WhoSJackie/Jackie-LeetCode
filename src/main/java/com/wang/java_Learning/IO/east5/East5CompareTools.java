@@ -1,7 +1,10 @@
-package com.wang.java_Learning.IO.reportProcessor;
+package com.wang.java_Learning.IO.east5;
 
+import com.wang.common.enums.HandleProcessEnum;
 import com.wang.java_Learning.IO.pojo.TbFieldPojo;
 import com.wang.java_Learning.IO.pojo.TbFieldsPojo;
+import com.wang.java_Learning.IO.reportProcessor.HandleProcessor;
+import com.wang.java_Learning.IO.utils.DefaultExcelUtils;
 
 import java.util.*;
 
@@ -16,13 +19,13 @@ public class East5CompareTools {
         Map<String,Object> params2 = new HashMap<>();
         params1.put("filePath",filePath1);
         params1.put("sheetIx",sheetIx1);
-        params1.put("type",ReportHandleProcessor.TB_FIELDS);
+        params1.put("type", HandleProcessEnum.TB_FIELDS.getCode());
         params2.put("filePath",filePath2);
         params2.put("sheetIx",sheetIx2);
-        params2.put("type",ReportHandleProcessor.TB_FIELDS);
+        params2.put("type", HandleProcessEnum.TB_FIELDS.getCode());
         Object obj = new Object();
-        Map<String, Object> file1 = new ReportDefaultExcelUtils().execute(obj,params1);
-        Map<String, Object> file2 = new ReportDefaultExcelUtils().execute(obj,params2);
+        Map<String, Object> file1 = new DefaultExcelUtils().execute(obj,params1);
+        Map<String, Object> file2 = new DefaultExcelUtils().execute(obj,params2);
         if (file1.size()!=file2.size()) {
             System.out.println("两版本表数量不一致");
             return res;

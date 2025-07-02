@@ -8,7 +8,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.util.*;
 
-public class BuildRiskFieldsProcessor implements ReportHandleProcessor{
+public class BuildRiskFieldsProcessor implements HandleProcessor {
     @Override
     public void doProcess(Sheet sheet, Map<String, Object> res) {
         Map<Integer, List<int[]>> mergeRange = new HashMap<>();

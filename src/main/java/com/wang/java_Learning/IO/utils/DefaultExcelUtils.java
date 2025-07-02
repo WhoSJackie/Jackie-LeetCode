@@ -1,8 +1,9 @@
 package com.wang.java_Learning.IO.utils;
 
 import com.monitorjbl.xlsx.StreamingReader;
-import com.wang.java_Learning.IO.reportProcessor.ReportHandleContext;
-import com.wang.java_Learning.IO.reportProcessor.ReportHandleProcessor;
+import com.wang.common.enums.HandleProcessEnum;
+import com.wang.java_Learning.IO.reportProcessor.HandleContext;
+import com.wang.java_Learning.IO.reportProcessor.HandleProcessor;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -49,11 +50,14 @@ public class DefaultExcelUtils<T> extends FileUtils<T>{
      void setBusiParam() {
         params.put("filePath","D:\\work\\报送口径文档\\报送口径文档\\east5\\2024.8监管数据规范化\\附件1：金融监管总局信托业监管数据标准化规范（2024版）一览表.xlsx");
         params.put("type",4);
-        params.put("sheetIx",ReportHandleProcessor.TB_FIELDS);
+        params.put("sheetIx", HandleProcessEnum.TB_FIELDS);
         params.put("bigXlsxFlag",1);
     }
 
-    public void doBusiness(Sheet sheet,Map<String, Object> res,int type){}
+    public void doBusiness(Sheet sheet, Map<String, Object> res,int type){
+        HandleProcessor processor = HandleContext.getProcessor(type);
+        processor.doProcess(sheet,res);
+    }
 
     public static void main(String[] args) {
 

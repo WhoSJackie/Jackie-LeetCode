@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Jackie-LeetCode.iml" filepath="$PROJECT_DIR$/.idea/Jackie-LeetCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/timetable-tool/timetable-tool.iml" filepath="$PROJECT_DIR$/timetable-tool/timetable-tool.iml" />
     </modules>
   </component>
 </project>

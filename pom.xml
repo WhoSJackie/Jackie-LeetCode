@@ -4,117 +4,123 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>com.wang</groupId>
     <artifactId>Jackie-LeetCode</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>timetable-tool</module>
+        <module>common</module>
+        <module>business</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.mpobjects</groupId>
-            <artifactId>bdparsii</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.linuxense</groupId>
-            <artifactId>javadbf</artifactId>
-            <version>0.4.0</version>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.mpobjects</groupId>
+                <artifactId>bdparsii</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.linuxense</groupId>
+                <artifactId>javadbf</artifactId>
+                <version>0.4.0</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>4.1.2</version>
-        </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>4.1.2</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.monitorjbl</groupId>
-            <artifactId>xlsx-streamer</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>xml-apis</groupId>
-            <artifactId>xml-apis</artifactId>
-            <version>1.4.01</version>
-        </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>4.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.monitorjbl</groupId>
+                <artifactId>xlsx-streamer</artifactId>
+                <version>2.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>1.4.01</version>
+            </dependency>
 
-        <dependency>
-            <groupId>ognl</groupId>
-            <artifactId>ognl</artifactId>
-            <version>3.2.10</version>
-        </dependency>
+            <dependency>
+                <groupId>ognl</groupId>
+                <artifactId>ognl</artifactId>
+                <version>3.2.10</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
-        </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.12</version>
+            </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.postgresql</groupId>-->
-<!--            <artifactId>postgresql</artifactId>-->
-<!--            <version>42.5.4</version>-->
-<!--        </dependency>-->
+            <!--        <dependency>-->
+            <!--            <groupId>org.postgresql</groupId>-->
+            <!--            <artifactId>postgresql</artifactId>-->
+            <!--            <version>42.5.4</version>-->
+            <!--        </dependency>-->
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.30</version>
-        </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.30</version>
+            </dependency>
 
-        <!-- Jackson core -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.11.0</version>
-        </dependency>
-        <!-- Jackson databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.11.0</version>
-        </dependency>
-        <!-- Jackson annotations -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.11.0</version>
-        </dependency>
+            <!-- Jackson core -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.11.0</version>
+            </dependency>
+            <!-- Jackson databind -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.11.0</version>
+            </dependency>
+            <!-- Jackson annotations -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.11.0</version>
+            </dependency>
 
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.4.1</version>
-        </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.4.1</version>
+            </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.huaweicloud.gaussdb</groupId>-->
-<!--            <artifactId>opengaussjdbc</artifactId>-->
-<!--            <version>503.2.T35</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.opengauss/opengauss-jdbc -->
-<!--        <dependency>-->
-<!--            <groupId>com.huawei.gauss</groupId>-->
-<!--            <artifactId>gauss-gsjdbc</artifactId>-->
-<!--            <version>4.0</version>-->
-<!--        </dependency>-->
+            <!--        <dependency>-->
+            <!--            <groupId>com.huaweicloud.gaussdb</groupId>-->
+            <!--            <artifactId>opengaussjdbc</artifactId>-->
+            <!--            <version>503.2.T35</version>-->
+            <!--            <scope>provided</scope>-->
+            <!--        </dependency>-->
+            <!-- https://mvnrepository.com/artifact/org.opengauss/opengauss-jdbc -->
+            <!--        <dependency>-->
+            <!--            <groupId>com.huawei.gauss</groupId>-->
+            <!--            <artifactId>gauss-gsjdbc</artifactId>-->
+            <!--            <version>4.0</version>-->
+            <!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.9.3</version>
-        </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.9.3</version>
+            </dependency>
 
-    </dependencies>
+        </dependencies>
+    </dependencyManagement>
+
 
 
 </project>

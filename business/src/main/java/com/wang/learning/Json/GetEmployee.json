@@ -1,0 +1,26 @@
+{
+    "access_token":"8a2b871d4f1e5fc2978dbb98a3b87dc5",
+    "request_body":{
+        "head":{
+		        "auth":"String",
+		        "serviceGuid":"String",
+		        "clientIP":"String",
+		        "version":"String"
+        },
+        "filter":[
+            {
+                "field":"bUCode",
+                "value":"BU0013",
+                "option":"="
+            }
+        ],
+        "pager":{
+            "size":3000,
+            "index":0
+        },
+        "show":[
+            "empCode","firstName","middleName","lastName","firstNameinLocalScript","middleNameinLocalScript","lastNameinLocalScript","nameinLocalScript","displayName","birthday","gender","nationality","nationalityName","employeeStatus","businessEmail","orginalHireDate","hireDate","terminationDate","buId","bUCode","bUCName","bUEName","deptId","deptCode","deptCName","deptEName","companyId","companyCode","companyCName","companyEName","scopeCode","scopeCName","scopeEName","organization","dOrgStructureCode","dOrgCodeCName","dOrgCodeEName","dOrgStructureInfoCode","cOrgStructureCode","cOrgCodeCName","lastOrgId","lastTeamId","orgIdPath","orgCodePath","orgTeamIdPath","position","businessTitle","jobProfile","jobFamily","employeeType","timeType","workShop","workShopName","workCity","eid","leader1","leader2","leadero","leaderf","emailStatus","address","probationEndDate","quitReason","costCenterId","costCenterCode","costCenterName","financeCode","financeCompany"
+        ],
+        "sort":"empCode"
+    }
+}

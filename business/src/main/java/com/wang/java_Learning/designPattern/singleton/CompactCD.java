@@ -1,8 +1,12 @@
 package com.wang.java_Learning.designPattern.singleton;
 
+/**
+ * 懒汉式
+ */
 public class CompactCD {
 
-    private static  CompactCD instance;
+    // 防止指令重排序;内存可见性
+    private static volatile CompactCD instance;
 
     private CompactCD(){}
 

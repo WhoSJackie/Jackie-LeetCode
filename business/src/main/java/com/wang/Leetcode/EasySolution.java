@@ -1,7 +1,9 @@
 package com.wang.Leetcode;
 
 
+import com.wang.common.ListNode;
 import com.wang.common.TreeNode;
+import com.wang.common.utils.ListNodeUtil;
 import com.wang.common.utils.TreeNodeUtil;
 
 import java.io.BufferedInputStream;
@@ -234,16 +236,102 @@ public class EasySolution {
         return f[l][r];
     }
 
+    public String decodeString(String s) {
+        return dfs(s,0)[0];
+    }
+
+    private String[] dfs(String s,int i){
+        StringBuffer sb = new StringBuffer();
+        int cnt = 0;
+        while (i<s.length()){
+            char ch = s.charAt(i);
+            if (ch>='0' && ch<='9'){
+                cnt = cnt*10+(ch-'0');
+            } else if (ch=='['){
+                String[] tmp = dfs(s,i+1);
+                while (cnt>0){
+                    sb.append(tmp[1]);
+                    cnt--;
+                }
+                i = Integer.parseInt(tmp[0]);
+            } else if (ch==']'){
+                return new String[]{String.valueOf(i),sb.toString()};
+            } else{
+                sb.append(ch);
+            }
+            i++;
+        }
+        return new String[]{sb.toString()};
+    }
+
+    public int[] dailyTemperatures(int[] temperatures) {
+        int len = temperatures.length;
+        int[] res = new int[len];
+        res[len-1] = 0;
+        int[] ix = new int[len];
+        ix[len-1] = len;
+        for (int i = len-2; i >=0; i--) {
+            int cur = temperatures[i];
+            if (cur<temperatures[i+1]) {
+                res[i] = 1;
+                ix[i] = i+1;
+            } else{
+                int tmpIx = ix[i+1];
+                while (tmpIx<len && temperatures[tmpIx]<=cur){
+                    tmpIx = ix[tmpIx];
+                }
+                if (tmpIx<len){
+                    res[i] = tmpIx-i;
+                    ix[i] = tmpIx;
+                } else{
+                    res[i] = 0;
+                    ix[i] = tmpIx;
+                }
+            }
+        }
+        return res;
+    }
+
+    ListNode a = null;
+    public ListNode reverseList(ListNode head) {
+        recursion(head);
+        return a.next;
+    }
+
+    private ListNode recursion(ListNode head){
+        if (head==null) {
+            a = new ListNode(0);
+            return a;
+        }
+        ListNode nextNode = recursion(head.next);
+        nextNode.next = head;
+        head.next = null;
+        return head;
+    }
+
+
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> res = new ArrayList<>();
+        int ix = 2;
+        res.add(new ArrayList<Integer>(){{add(1);}});
+        while (ix<=numRows){
+            List<Integer> curList = new ArrayList<>();
+            List<Integer> last = res.get(ix - 2);
+            for (int i = 0; i < ix; i++) {
+                if (i == 0 || i == ix-1){
+                    curList.add(1);
+                    continue;
+                }
+                curList.add(last.get(i-1)+last.get(i));
+            }
+            res.add(curList);
+            ix++;
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
-        List<List<String>> res = new EasySolution().partition("aab");
-        for (List<String> re : res) {
-            for (String s : re) {
-                System.out.print(s);
-                System.out.print("-");
-            }
-            System.out.println();
-        }
+
     }
 
 

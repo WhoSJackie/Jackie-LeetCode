@@ -6,4 +6,8 @@ public class BeansException extends RuntimeException{
         super(msg);
     }
 
+    public BeansException(String msg,Exception ex){
+        super(msg,ex);
+    }
+
 }

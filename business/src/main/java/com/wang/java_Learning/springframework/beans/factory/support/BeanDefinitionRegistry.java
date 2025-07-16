@@ -6,4 +6,10 @@ public interface BeanDefinitionRegistry {
 
     void registryBeanDefinition(String beanName, BeanDefinition beanDefinition);
 
+    boolean containsBeanDefinition(String beanName);
+
+    BeanDefinition getBeanDefinition(String beanName);
+
+    String[] getBeanDefinitionNames();
+
 }

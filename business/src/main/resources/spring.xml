@@ -1,0 +1,10 @@
+<beans>
+
+    <bean id="apiDao" class="com.wang.java_Learning.springframework.beans.ApiDao"/>
+
+    <bean id="apiService" class="com.wang.java_Learning.springframework.beans.ApiService">
+        <property name="uid" value="10001"/>
+        <property name="apiDao" ref="apiDao"/>
+    </bean>
+
+</beans>

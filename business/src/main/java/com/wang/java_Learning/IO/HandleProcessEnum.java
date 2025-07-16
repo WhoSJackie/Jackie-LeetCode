@@ -18,7 +18,7 @@ public enum HandleProcessEnum {
         for (HandleProcessEnum value : HandleProcessEnum.values()) {
             if (value.code==code) return value;
         }
-        return null;
+        throw new RuntimeException("No attach code found!");
     }
 
     public  HandleProcessor getProcessor(){

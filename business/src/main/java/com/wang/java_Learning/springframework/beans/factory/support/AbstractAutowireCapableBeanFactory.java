@@ -1,18 +1,22 @@
 package com.wang.java_Learning.springframework.beans.factory.support;
 
+import cn.hutool.core.bean.BeanException;
+import cn.hutool.core.bean.BeanUtil;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
+import com.wang.java_Learning.springframework.beans.factory.config.BeanReference;
 
 import java.lang.reflect.Constructor;
 
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
 
-    private JDKInstantiationStrategy jdkInstantiationStrategy = new JDKInstantiationStrategy();
+    private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition,Object[] args) {
         Object bean = null;
         try {
             bean = createBeanInstance(beanName,beanDefinition,args);
+            applyPropertyValues(beanName,bean,beanDefinition);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -20,17 +24,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return bean;
     }
 
-    @Override
-    protected Object createBean(String beanName, BeanDefinition beanDefinition) {
-        Object bean = null;
-        try {
-            bean = beanDefinition.getBeanClass().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        addSingleton(beanName,bean);
-        return bean;
-    }
 
     protected  Object createBeanInstance(String beanName, BeanDefinition beanDefinition,Object[] args){
         Constructor ctor = null;
@@ -42,15 +35,35 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 break;
             }
         }
-        return jdkInstantiationStrategy.instantiate(beanDefinition,beanName,ctor,args);
+        return getInstantiationStrategy().instantiate(beanDefinition,beanName,ctor,args);
     }
 
+    protected void applyPropertyValues(String beanName,Object bean,BeanDefinition beanDefinition){
+        try{
+            PropertyValues propertyValues = beanDefinition.getPropertyValue();
+            for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
+                String name = propertyValue.getName();
+                Object value = propertyValue.getValue();
 
+                if (value instanceof BeanReference){
+                    BeanReference beanReference = (BeanReference) value;
+                    value = getBean(beanReference.getBeanName());
+                }
+                // 属性填充
+                BeanUtil.setFieldValue(bean,name,value);
+            }
+        } catch (Exception e){
+            throw new BeanException("Error setting property values: "+ beanName+" error is:"+e.toString());
+        }
+    }
 
+    public void setInstantiationStrategy(InstantiationStrategy instantiationStrategy){
+        this.instantiationStrategy = instantiationStrategy;
+    }
 
-
-
-
+    public InstantiationStrategy getInstantiationStrategy(){
+        return this.instantiationStrategy;
+    }
 
 
 }

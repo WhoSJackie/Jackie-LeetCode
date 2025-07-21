@@ -4,7 +4,7 @@ import com.wang.common.ListNode;
 
 public class ListNodeUtil {
 
-    public static<T> ListNode buildListNode(int[] arr){
+    public static ListNode buildListNode(int[] arr){
         ListNode listNode = new ListNode();
         ListNode cur = listNode;
         for (int i : arr) {
@@ -15,9 +15,11 @@ public class ListNodeUtil {
         return listNode.next;
     }
 
-
-
-
-
+    public static void visitList(ListNode head){
+        while (head!=null){
+            System.out.println(head.val);
+            head = head.next;
+        }
+    }
 
 }

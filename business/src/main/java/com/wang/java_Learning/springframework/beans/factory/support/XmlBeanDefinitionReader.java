@@ -50,6 +50,13 @@ public class XmlBeanDefinitionReader extends DefaultBeanDefinitionReader{
         loadBeanDefinitions(resource);
     }
 
+    @Override
+    public void loadBeanDefinitions(String[] locations) throws BeansException {
+        for (String location : locations) {
+            this.loadBeanDefinitions(location);
+        }
+    }
+
     protected void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
         Document document = XmlUtil.readXML(inputStream);
         Element root = document.getDocumentElement();
@@ -65,11 +72,17 @@ public class XmlBeanDefinitionReader extends DefaultBeanDefinitionReader{
             String className = bean.getAttribute("class");
             Class<?> clazz = Class.forName(className);
 
+            // 获取init-method destroy-method
+            String initMethod = bean.getAttribute("init-method");
+            String destroyMethod = bean.getAttribute("destroy-method");
+
             String beanName = StrUtil.isNotEmpty(id)?id:name;
             if (StrUtil.isEmpty(beanName)) beanName = StrUtil.lowerFirst(clazz.getSimpleName());
 
             // 定义bean
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
+            beanDefinition.setInitMethodName(initMethod);
+            beanDefinition.setDestroyMethodName(destroyMethod);
 
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
                 if (!(bean.getChildNodes().item(j) instanceof Element)) continue;
@@ -81,7 +94,7 @@ public class XmlBeanDefinitionReader extends DefaultBeanDefinitionReader{
                 // 注入属性（对象/值）
                 Object value = StrUtil.isNotEmpty(attrRef)?new BeanReference(attrRef):attrValue;
                 PropertyValue propertyValue = new PropertyValue(attrName,value);
-                beanDefinition.getPropertyValue().addPropertyValue(propertyValue);
+                beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
             }
             if (getRegistry().containsBeanDefinition(beanName)){
                 throw new BeansException("Duplicate beanName[" + beanName + "] is not allowed");

@@ -1,10 +1,15 @@
 <beans>
 
-    <bean id="apiDao" class="com.wang.java_Learning.springframework.beans.ApiDao"/>
-
     <bean id="apiService" class="com.wang.java_Learning.springframework.beans.ApiService">
         <property name="uid" value="10001"/>
+        <property name="location" value="成都"/>
+        <property name="company" value="金证"/>
         <property name="apiDao" ref="apiDao"/>
     </bean>
+
+    <bean id="apiDao" class="com.wang.java_Learning.springframework.beans.ApiDao" init-method="initDataMethod" destroy-method="destroyDataMethod"/>
+
+<!--    <bean id="myBeanFactoryPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor"/>-->
+<!--    <bean id="myBeanPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor"/>-->
 
 </beans>

@@ -17,4 +17,11 @@ public class ApiDao {
         return hashMap.get(uId);
     }
 
+    public void initDataMethod(){
+        System.out.println("init data!");
+    }
+    public void destroyDataMethod(){
+        System.out.println("destroy data!");
+    }
+
 }

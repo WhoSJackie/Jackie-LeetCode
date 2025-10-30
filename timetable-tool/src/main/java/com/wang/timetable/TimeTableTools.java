@@ -29,6 +29,7 @@ public class TimeTableTools {
         }
         File file = new File(targetFilePath+File.separator+filterName+".xlsx");
         Workbook book = null;
+        int stuCount = 0;
         try (FileOutputStream output = new FileOutputStream(file)){
             if (file.exists()) {
                 file.delete();
@@ -80,7 +81,10 @@ public class TimeTableTools {
                 String s = "";
                 if (nameArr!=null && nameArr.size()>0) s = nameArr.stream().filter(item -> item.contains(filterName)).findFirst().orElse("");
                 cell.setCellValue(buildRichText(s,fontText));
-                if (!StringUtils.isEmpty(s)) cell.setCellStyle(cellStyle);
+                if (!StringUtils.isEmpty(s)) {
+                    cell.setCellStyle(cellStyle);
+                    stuCount++;
+                }
             }
             book.write(output);
         } catch (Exception e){
@@ -93,6 +97,7 @@ public class TimeTableTools {
             }
         }
         System.out.println("生成文件成功!");
+        System.out.println("学生课程总数: "+stuCount);
     }
 
 
@@ -161,7 +166,6 @@ public class TimeTableTools {
                 workbook = WorkbookFactory.create(input);
             }
             Sheet sheet = workbook.getSheetAt(sheetIx);
-            // 和业务耦合度太高，考虑拆分,可以考虑使用子类继承该类实现具体业务代码来实现
             doProcess(sheet,res);
         } catch (Exception e){
             e.printStackTrace();
@@ -207,6 +211,7 @@ public class TimeTableTools {
                 // 保证课表的日期都存在
                 List<String> strArr = (List<String>) res.getOrDefault(key, new ArrayList<>());
                 if (!res.containsKey(key)) res.put(key,strArr);
+                // 跳过空单元格
                 if (StringUtils.isEmpty(cell.getStringCellValue())) {
                     colNum++;
                     continue;
@@ -245,7 +250,7 @@ public class TimeTableTools {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入文件路径:");
         String filePath = scanner.nextLine();
-        System.out.println("请输入sheet号:");
+        System.out.println("请输入sheet号(从0开始):");
         int ix  = scanner.nextInt();
         scanner.nextLine();
         System.out.println("请输入目标excel地址:");

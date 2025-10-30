@@ -6,6 +6,10 @@ import com.wang.java_Learning.springframework.beans.factory.support.DefaultLista
 import com.wang.java_Learning.springframework.beans.factory.support.PropertyValue;
 import com.wang.java_Learning.springframework.beans.factory.support.PropertyValues;
 import com.wang.java_Learning.springframework.beans.factory.support.XmlBeanDefinitionReader;
+import com.wang.java_Learning.springframework.context.ApplicationContext;
+import com.wang.java_Learning.springframework.context.support.ClassPathXmlApplicationContext;
+import com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor;
+import com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor;
 import org.junit.Test;
 
 public class ApiTest {
@@ -38,15 +42,30 @@ public class ApiTest {
         // 1.初始化beanFactory
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        // 读取xml配置，注入bean
+        // 2.读取xml配置，注入bean
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
         reader.loadBeanDefinitions("classpath:spring.xml");
 
-        // 获取bean并且测试
+        // 3.BeanDefinition 加载完成 & Bean实例化之前，修改 BeanDefinition 的属性值
+        MyBeanFactoryPostProcessor beanFactoryPostProcessor = new MyBeanFactoryPostProcessor();
+        beanFactoryPostProcessor.postProcessorBeanFactory(beanFactory);
+
+        // 4.bean实例化完成后，修改属性
+        MyBeanPostProcessor beanPostProcessor = new MyBeanPostProcessor();
+        beanFactory.addBeanPostProcessor(beanPostProcessor);
+
+        // 5.获取bean并且测试
         ApiService bean = (ApiService)beanFactory.getBean("apiService");
         bean.testService();
     }
 
+    @Test
+    public void testApplicationContext(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        applicationContext.registerShutdownHook();
+        ApiService apiService = applicationContext.getBean("apiService", ApiService.class);
+        apiService.testService();
+    }
 
 
 }

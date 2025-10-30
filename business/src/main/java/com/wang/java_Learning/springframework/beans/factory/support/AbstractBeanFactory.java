@@ -1,9 +1,16 @@
 package com.wang.java_Learning.springframework.beans.factory.support;
 
+import cn.hutool.core.bean.BeanException;
+import com.wang.java_Learning.springframework.beans.BeansException;
 import com.wang.java_Learning.springframework.beans.factory.BeanFactory;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
+import com.wang.java_Learning.springframework.beans.factory.config.BeanPostProcessor;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+
 
     @Override
     public Object getBean(String name,Object... args) {
@@ -15,9 +22,20 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return createBean(name,beanDefinition,args);
     }
 
+    @Override
+    public <T> T getBean(String name, Class<T> requiredType) {
+        Object bean = this.getBean(name);
+        if (requiredType!=null && !requiredType.isInstance(bean)){
+            throw new BeansException("Bean named '" + name + "' is expected to be of type '" + requiredType.getTypeName() + "' but was actually of type '" + bean.getClass().getTypeName() + "'");
+        }
+        return (T) bean;
+    }
 
     protected abstract BeanDefinition getBeanDefinition(String beanName);
 
     protected abstract Object createBean(String beanName,BeanDefinition beanDefinition,Object[] args);
+
+
+
 
 }

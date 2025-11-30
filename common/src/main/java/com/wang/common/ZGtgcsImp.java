@@ -1,8 +1,6 @@
 package com.wang.common;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -24,20 +22,36 @@ public class ZGtgcsImp {
         }
     }
 
-    public static List<String[]> readExcel(File file, int rowStart){
+    public static List<String[]> readExcel(File file,int rowStart){
         List<String[]> res = new ArrayList<>();
         InputStream is = null;
         try{
             is = new FileInputStream(file);
             Workbook workbook = new XSSFWorkbook(is);
             Sheet sheet = workbook.getSheetAt(0);
-            for (int i=rowStart;i<=sheet.getLastRowNum();i++){
+            for (int i=rowStart;i<sheet.getLastRowNum();i++){
                 Row row = sheet.getRow(i);
-                int rowNum = row.getRowNum();
-                System.out.println("列数据："+rowNum);
-                String[] cellInfo = new String[rowNum];
-                for (int j = 0; j < rowNum; j++) {
-                    cellInfo[j] = row.getCell(j).getStringCellValue();
+                String[] cellInfo = new String[20];
+                for (int j = 0; j < 20; j++) {
+                    Cell cell = row.getCell(j);
+                    if (cell==null) {
+                        cellInfo[j] = "";
+                        continue;
+                    }
+                    CellType cellType = cell.getCellType();
+                    switch (cellType){
+                        case NUMERIC:
+                            cellInfo[j] = String.valueOf(cell.getNumericCellValue()*100)+"%";
+                            break;
+                        case STRING:
+                            cellInfo[j] = cell.getStringCellValue();
+                            break;
+                        case BLANK:
+                        case _NONE:
+                            cellInfo[j] = "";
+                        default:
+                            cellInfo[j] = cell.getStringCellValue();
+                    }
                 }
                 res.add(cellInfo);
             }

@@ -1,5 +1,7 @@
 package com.wang.common;
 
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ZGtgcsImp {
+
+//    private final static Logger log = LogManager.getLogger(ZGtgcsImp.class);
 
     public static void fillInfoByExcel(File file){
         List<String[]> infoList = readExcel(file,2);
@@ -69,7 +73,8 @@ public class ZGtgcsImp {
     }
 
     public static void main(String[] args) {
-        fillInfoByExcel(new File("C:\\Users\\jiami\\Desktop\\固定投顾费-20250925(1).xlsx"));
+//        log.info("test1");
+//        fillInfoByExcel(new File("C:\\Users\\jiami\\Desktop\\固定投顾费-20250925(1).xlsx"));
     }
 
 }

@@ -4,8 +4,8 @@ import com.wang.java_Learning.springframework.beans.BeansException;
 import com.wang.java_Learning.springframework.beans.factory.ConfigurableListableBeanFactory;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import com.wang.java_Learning.springframework.beans.factory.support.PropertyValue;
-import com.wang.java_Learning.springframework.beans.factory.support.PropertyValues;
+import com.wang.java_Learning.springframework.beans.PropertyValue;
+import com.wang.java_Learning.springframework.beans.PropertyValues;
 
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     @Override

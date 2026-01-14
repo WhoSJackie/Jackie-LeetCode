@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!-- 控制台输出 -->
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}%5p %c{1}:%L-%m%n" />
+        </Console>
+
+        <!-- 日志文件输出 (INFO及以上) -->
+        <RollingFile name="D"
+                     fileName="D:/jssj/log/log.txt"
+                     filePattern="D:/jssj/log/log.txt.%d{yyyy-MM-dd}-%i">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%-d{yyyy-MM-dd HH:mm:ss}[%l:%r]-[%p]%m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+            </Policies>
+        </RollingFile>
+
+        <!-- 错误日志文件输出 (ERROR级别及以上) -->
+        <RollingFile name="E"
+                     fileName="D:/jssj/log/error.txt"
+                     filePattern="D:/jssj/log/error.txt.%d{yyyy-MM-dd}-%i">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%-d{yyyy-MM-dd HH:mm:ss}[%l:%r]-[%p]%m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="stdout" />
+            <AppenderRef ref="D" />
+            <AppenderRef ref="E" />
+        </Root>
+    </Loggers>
+</Configuration>

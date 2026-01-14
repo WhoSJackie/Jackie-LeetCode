@@ -2,6 +2,8 @@ package com.wang.timetable;
 
 import com.monitorjbl.xlsx.StreamingReader;
 import com.wang.common.utils.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -19,6 +21,8 @@ public class TimeTableTools {
     private final static String[] dayOfWeek= new String[]{"周一","周二","周三","周四","周五","周六","周日"};
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy年M月d日");
     private final static Long dayTimeMill = 24*60*60*1000L;
+
+    private final static Logger log = LogManager.getLogger(TimeTableTools.class);
 
     public void filterName(Map<String,Object> params,String targetFilePath,String filterName){
         Map<String, Object>  res = execute(params);
@@ -96,8 +100,8 @@ public class TimeTableTools {
                 e.printStackTrace();
             }
         }
-        System.out.println("生成文件成功!");
-        System.out.println("学生课程总数: "+stuCount);
+        log.info("生成文件成功!");
+        log.info("学生课程总数: "+stuCount);
     }
 
 
@@ -246,28 +250,29 @@ public class TimeTableTools {
 
 
     public static void main(String[] args) {
-        TimeTableTools timeTableTools = new TimeTableTools();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入文件路径:");
-        String filePath = scanner.nextLine();
-        System.out.println("请输入sheet号(从0开始):");
-        int ix  = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("请输入目标excel地址:");
-        String tarFilePath = scanner.nextLine();
-        Map<String,Object> params = new HashMap<>();
-        params.put("filePath",filePath.trim().replace("\"",""));
-        params.put("sheetIx",ix);
-        params.put("bigXlsxFlag",0);
-        System.out.println("请输入过滤姓名(输入exit为退出):");
-        String filterName = scanner.nextLine().trim();
-        timeTableTools.filterName(params,tarFilePath,filterName);
-        while (!"exit".equals(filterName)){
-            System.out.println("请输入过滤姓名(输入exit为退出):");
-            filterName = scanner.nextLine();
-            if ("exit".equals(filterName)) break;
-            timeTableTools.filterName(params,tarFilePath,filterName);
-        }
+//        TimeTableTools timeTableTools = new TimeTableTools();
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("请输入文件路径:");
+//        String filePath = scanner.nextLine();
+//        System.out.println("请输入sheet号(从0开始):");
+//        int ix  = scanner.nextInt();
+//        scanner.nextLine();
+//        System.out.println("请输入目标excel地址:");
+//        String tarFilePath = scanner.nextLine();
+//        Map<String,Object> params = new HashMap<>();
+//        params.put("filePath",filePath.trim().replace("\"",""));
+//        params.put("sheetIx",ix);
+//        params.put("bigXlsxFlag",0);
+//        System.out.println("请输入过滤姓名(输入exit为退出):");
+//        String filterName = scanner.nextLine().trim();
+//        timeTableTools.filterName(params,tarFilePath,filterName);
+//        while (!"exit".equals(filterName)){
+//            System.out.println("请输入过滤姓名(输入exit为退出):");
+//            filterName = scanner.nextLine();
+//            if ("exit".equals(filterName)) break;
+//            timeTableTools.filterName(params,tarFilePath,filterName);
+//        }
+        log.info("test1");
     }
 
 

@@ -5,12 +5,17 @@ import com.wang.java_Learning.springframework.beans.BeansException;
 import com.wang.java_Learning.springframework.beans.factory.BeanFactory;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanPostProcessor;
+import com.wang.java_Learning.springframework.utils.ClassUtils;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
+    /**
+     * ClassLoader to resolve bean class names with, if necessary
+     */
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     @Override
     public Object getBean(String name,Object... args) {
@@ -35,7 +40,9 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     protected abstract Object createBean(String beanName,BeanDefinition beanDefinition,Object[] args);
 
-
+    public ClassLoader getBeanClassLoader() {
+        return this.beanClassLoader;
+    }
 
 
 }

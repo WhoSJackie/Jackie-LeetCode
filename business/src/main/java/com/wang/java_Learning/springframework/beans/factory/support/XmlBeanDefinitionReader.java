@@ -2,15 +2,14 @@ package com.wang.java_Learning.springframework.beans.factory.support;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
-import com.ibm.icu.impl.Assert;
 import com.wang.java_Learning.springframework.beans.BeansException;
+import com.wang.java_Learning.springframework.beans.PropertyValue;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanReference;
 import com.wang.java_Learning.springframework.core.io.Resource;
 import com.wang.java_Learning.springframework.core.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.IOException;

@@ -1,7 +1,6 @@
 package com.wang.java_Learning.springframework.beans.factory.config;
 
-import com.wang.java_Learning.springframework.beans.factory.support.PropertyValue;
-import com.wang.java_Learning.springframework.beans.factory.support.PropertyValues;
+import com.wang.java_Learning.springframework.beans.PropertyValues;
 
 public class BeanDefinition {
 

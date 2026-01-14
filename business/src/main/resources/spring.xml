@@ -9,7 +9,7 @@
 
     <bean id="apiDao" class="com.wang.java_Learning.springframework.beans.ApiDao" init-method="initDataMethod" destroy-method="destroyDataMethod"/>
 
-<!--    <bean id="myBeanFactoryPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor"/>-->
-<!--    <bean id="myBeanPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor"/>-->
+    <bean id="myBeanFactoryPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor"/>
+    <bean id="myBeanPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor"/>
 
 </beans>

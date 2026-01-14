@@ -3,10 +3,7 @@ package com.wang.java_Learning.springframework.beans;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanReference;
 import com.wang.java_Learning.springframework.beans.factory.support.DefaultListableBeanFactory;
-import com.wang.java_Learning.springframework.beans.factory.support.PropertyValue;
-import com.wang.java_Learning.springframework.beans.factory.support.PropertyValues;
 import com.wang.java_Learning.springframework.beans.factory.support.XmlBeanDefinitionReader;
-import com.wang.java_Learning.springframework.context.ApplicationContext;
 import com.wang.java_Learning.springframework.context.support.ClassPathXmlApplicationContext;
 import com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor;
 import com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor;
@@ -65,6 +62,8 @@ public class ApiTest {
         applicationContext.registerShutdownHook();
         ApiService apiService = applicationContext.getBean("apiService", ApiService.class);
         apiService.testService();
+        System.out.println("ApplicationContextAware："+apiService.getApplicationContext());
+        System.out.println("BeanFactoryAware："+apiService.getBeanFactory());
     }
 
 

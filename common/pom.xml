@@ -9,10 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <libpath>${project.basedir}/src/main/resources/libs</libpath>
     </properties>
 
     <dependencies>
@@ -85,6 +87,17 @@
             <artifactId>selenium-chrome-driver</artifactId>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

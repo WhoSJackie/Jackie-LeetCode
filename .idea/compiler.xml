@@ -12,11 +12,5 @@
         <module name="timetable-tool" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="business" target="1.8" />
-      <module name="common" target="1.8" />
-      <module name="Jackie-LeetCode" target="1.8" />
-      <module name="timetable-tool" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

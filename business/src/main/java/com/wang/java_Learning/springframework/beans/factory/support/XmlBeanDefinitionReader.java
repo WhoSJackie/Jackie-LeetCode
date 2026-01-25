@@ -2,6 +2,7 @@ package com.wang.java_Learning.springframework.beans.factory.support;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
+import com.wang.common.utils.StringUtils;
 import com.wang.java_Learning.springframework.beans.BeansException;
 import com.wang.java_Learning.springframework.beans.PropertyValue;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
@@ -69,6 +70,7 @@ public class XmlBeanDefinitionReader extends DefaultBeanDefinitionReader{
             String id = bean.getAttribute("id");
             String name = bean.getAttribute("name");
             String className = bean.getAttribute("class");
+            String beanScope = bean.getAttribute("scope");
             Class<?> clazz = Class.forName(className);
 
             // 获取init-method destroy-method
@@ -82,6 +84,10 @@ public class XmlBeanDefinitionReader extends DefaultBeanDefinitionReader{
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
             beanDefinition.setInitMethodName(initMethod);
             beanDefinition.setDestroyMethodName(destroyMethod);
+
+            if (!StringUtils.isEmpty(beanScope)){
+                beanDefinition.setScope(beanScope);
+            }
 
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
                 if (!(bean.getChildNodes().item(j) instanceof Element)) continue;

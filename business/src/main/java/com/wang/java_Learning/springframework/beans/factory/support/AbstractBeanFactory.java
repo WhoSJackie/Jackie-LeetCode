@@ -3,6 +3,7 @@ package com.wang.java_Learning.springframework.beans.factory.support;
 import cn.hutool.core.bean.BeanException;
 import com.wang.java_Learning.springframework.beans.BeansException;
 import com.wang.java_Learning.springframework.beans.factory.BeanFactory;
+import com.wang.java_Learning.springframework.beans.factory.FactoryBean;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanPostProcessor;
 import com.wang.java_Learning.springframework.utils.ClassUtils;
@@ -10,7 +11,7 @@ import com.wang.java_Learning.springframework.utils.ClassUtils;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements BeanFactory {
 
     /**
      * ClassLoader to resolve bean class names with, if necessary
@@ -44,5 +45,26 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return this.beanClassLoader;
     }
 
+    protected <T>T doGetBean(final String  name, final Object[] args){
+        Object sharedInstance = getSingleton(name);
+        if (sharedInstance !=null){
+            return (T) getObjectForBeanInstance(sharedInstance,name);
+        }
+        BeanDefinition beanDefinition = getBeanDefinition(name);
+        Object bean = createBean(name, beanDefinition, args);
+        return (T) getObjectForBeanInstance(bean,name);
+    }
+
+    private Object getObjectForBeanInstance(Object beanInstance,String beanName){
+        if (!(beanInstance instanceof BeanFactory)){
+            return beanInstance;
+        }
+        Object object = getCachedObjectForFactoryBean(beanName);
+        if (object==null){
+            FactoryBean<?> factoryBean = (FactoryBean<?>) beanInstance;
+            object = getObjectFromFactoryBean(factoryBean, beanName);
+        }
+        return object;
+    }
 
 }

@@ -1,15 +1,23 @@
 <beans>
 
-    <bean id="apiService" class="com.wang.java_Learning.springframework.beans.ApiService">
-        <property name="uid" value="10001"/>
-        <property name="location" value="成都"/>
-        <property name="company" value="金证"/>
-        <property name="apiDao" ref="apiDao"/>
+<!--    api bean-->
+<!--    <bean id="apiService" class="com.wang.java_Learning.springframework.beans.api.ApiService">-->
+<!--        <property name="uid" value="10001"/>-->
+<!--        <property name="location" value="成都"/>-->
+<!--        <property name="company" value="金证"/>-->
+<!--        <property name="apiDao" ref="apiDao"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="apiDao" class="com.wang.java_Learning.springframework.beans.api.ApiDao" init-method="initDataMethod" destroy-method="destroyDataMethod"/>-->
+<!--    <bean id="myBeanFactoryPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor"/>-->
+<!--    <bean id="myBeanPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor"/>-->
+
+<!--    user bean-->
+    <bean id="userService" class="com.wang.java_Learning.springframework.beans.user.UserService" scope="singleton">
+        <property name="userId" value="10002"/>
+        <property name="userDao" ref="proxyUserDao"/>
     </bean>
 
-    <bean id="apiDao" class="com.wang.java_Learning.springframework.beans.ApiDao" init-method="initDataMethod" destroy-method="destroyDataMethod"/>
-
-    <bean id="myBeanFactoryPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor"/>
-    <bean id="myBeanPostProcessor" class="com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor"/>
+    <bean id="proxyUserDao" class="com.wang.java_Learning.springframework.beans.user.ProxyBeanFactory" />
 
 </beans>

@@ -1,4 +1,4 @@
-package com.wang.java_Learning.springframework.beans;
+package com.wang.java_Learning.springframework.beans.api;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +9,8 @@ public class ApiDao {
 
     static {
         hashMap.put("10001", "Jackie");
-        hashMap.put("10002", "八杯水");
-        hashMap.put("10003", "阿毛");
+        hashMap.put("10002", "Maggie");
+        hashMap.put("10003", "Toby");
     }
 
     public String queryUserName(String uId) {

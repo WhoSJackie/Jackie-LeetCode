@@ -1,6 +1,6 @@
-package com.wang.java_Learning.springframework.beans;
+package com.wang.java_Learning.springframework.beans.api;
 
-import cn.hutool.core.bean.BeanException;
+import com.wang.java_Learning.springframework.beans.BeansException;
 import com.wang.java_Learning.springframework.beans.factory.*;
 import com.wang.java_Learning.springframework.context.ApplicationContext;
 import com.wang.java_Learning.springframework.context.ApplicationContextAware;

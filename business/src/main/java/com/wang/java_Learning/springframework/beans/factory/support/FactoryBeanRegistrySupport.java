@@ -11,17 +11,17 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 
     protected Object getCachedObjectForFactoryBean(String beanName){
         Object object = this.factoryBeanObjectCache.get(beanName);
-        return (object!=null?object:null);
+        return (object != NULL_OBJECT ? object : null);
     }
 
     protected Object getObjectFromFactoryBean(FactoryBean factory, String beanName){
-        if (factory.isSingletion()){
+        if (factory.isSingleton()){
             Object object = this.factoryBeanObjectCache.get(beanName);
             if (object == null){
                 object  = doGetObjectFromFactoryBean(factory,beanName);
-                this.factoryBeanObjectCache.put(beanName,object);
+                this.factoryBeanObjectCache.put(beanName,(object != null ? object : NULL_OBJECT));
             }
-            return (object!=null?object:null);
+            return (object != NULL_OBJECT ?object:null);
         } else{
             return doGetObjectFromFactoryBean(factory, beanName);
         }

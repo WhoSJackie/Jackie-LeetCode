@@ -19,22 +19,18 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     @Override
+    public Object getBean(String name) {
+        return doGetBean(name,null);
+    }
+
+    @Override
     public Object getBean(String name,Object... args) {
-        Object bean = getSingleton(name);
-        if (bean!=null){
-            return bean;
-        }
-        BeanDefinition beanDefinition = getBeanDefinition(name);
-        return createBean(name,beanDefinition,args);
+        return doGetBean(name,args);
     }
 
     @Override
     public <T> T getBean(String name, Class<T> requiredType) {
-        Object bean = this.getBean(name);
-        if (requiredType!=null && !requiredType.isInstance(bean)){
-            throw new BeansException("Bean named '" + name + "' is expected to be of type '" + requiredType.getTypeName() + "' but was actually of type '" + bean.getClass().getTypeName() + "'");
-        }
-        return (T) bean;
+        return (T)getBean(name);
     }
 
     protected abstract BeanDefinition getBeanDefinition(String beanName);
@@ -56,7 +52,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     }
 
     private Object getObjectForBeanInstance(Object beanInstance,String beanName){
-        if (!(beanInstance instanceof BeanFactory)){
+        if (!(beanInstance instanceof FactoryBean)){
             return beanInstance;
         }
         Object object = getCachedObjectForFactoryBean(beanName);

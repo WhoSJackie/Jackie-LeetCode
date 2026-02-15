@@ -1,6 +1,6 @@
 package com.wang.java_Learning.springframework.postprocessor;
 
-import com.wang.java_Learning.springframework.beans.ApiService;
+import com.wang.java_Learning.springframework.beans.api.ApiService;
 import com.wang.java_Learning.springframework.beans.BeansException;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanPostProcessor;
 

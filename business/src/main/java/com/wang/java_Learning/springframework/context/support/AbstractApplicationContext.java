@@ -54,6 +54,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
     //---------------------------------------------------------------------
     // Implementation of BeanFactory interface
     //---------------------------------------------------------------------
+
+    @Override
+    public Object getBean(String name) {
+        return getBeanFactory().getBean(name);
+    }
     @Override
     public Object getBean(String name, Object... args) {
         return getBeanFactory().getBean(name,args);

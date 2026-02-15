@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
+    protected static final Object NULL_OBJECT = new Object();
     private Map<String,Object> singletonObjects = new HashMap<>();
 
     private final Map<String, Object> disposableBeans = new LinkedHashMap();

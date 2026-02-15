@@ -1,13 +1,18 @@
 package com.wang.java_Learning.springframework.beans;
 
+import com.wang.java_Learning.springframework.beans.api.ApiDao;
+import com.wang.java_Learning.springframework.beans.api.ApiService;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanDefinition;
 import com.wang.java_Learning.springframework.beans.factory.config.BeanReference;
 import com.wang.java_Learning.springframework.beans.factory.support.DefaultListableBeanFactory;
 import com.wang.java_Learning.springframework.beans.factory.support.XmlBeanDefinitionReader;
+import com.wang.java_Learning.springframework.beans.user.ProxyBeanFactory;
+import com.wang.java_Learning.springframework.beans.user.UserService;
 import com.wang.java_Learning.springframework.context.support.ClassPathXmlApplicationContext;
 import com.wang.java_Learning.springframework.postprocessor.MyBeanFactoryPostProcessor;
 import com.wang.java_Learning.springframework.postprocessor.MyBeanPostProcessor;
 import org.junit.Test;
+import org.openjdk.jol.info.ClassLayout;
 
 public class ApiTest {
 
@@ -64,6 +69,22 @@ public class ApiTest {
         apiService.testService();
         System.out.println("ApplicationContextAware："+apiService.getApplicationContext());
         System.out.println("BeanFactoryAware："+apiService.getBeanFactory());
+    }
+
+    @Test
+    public void testScope(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        applicationContext.registerShutdownHook();
+        UserService userService01 = applicationContext.getBean("userService", UserService.class);
+        UserService userService02 = applicationContext.getBean("userService", UserService.class);
+        // 3. 配置 scope="prototype/singleton"
+        System.out.println(userService01.queryUserName());
+        System.out.println(userService01);
+        System.out.println(userService02);
+
+        // 4. 打印十六进制哈希
+        System.out.println(userService01 + " 十六进制哈希：" + Integer.toHexString(userService01.hashCode()));
+        System.out.println(ClassLayout.parseInstance(userService01).toPrintable());
     }
 
 

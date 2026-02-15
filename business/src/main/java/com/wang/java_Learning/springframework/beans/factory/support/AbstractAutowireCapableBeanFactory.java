@@ -41,10 +41,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
     protected  Object createBeanInstance(String beanName, BeanDefinition beanDefinition,Object[] args){
         Constructor ctor = null;
-        Class beanClass = beanDefinition.getBeanClass();
-        Constructor[] declaredConstructors = beanClass.getDeclaredConstructors();
+        Class<?> beanClass = beanDefinition.getBeanClass();
+        Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
         for (Constructor constructor : declaredConstructors) {
-            if (constructor!=null && args.length == constructor.getParameterTypes().length){
+            if (null != args && constructor.getParameterTypes().length == args.length ){
                 ctor = constructor;
                 break;
             }
